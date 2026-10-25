@@ -1,170 +1,111 @@
 /**
- * Product modules. Shown on the home page (summary cards) and on /product (full detail).
- * Keep claims factual: only list features the product actually ships.
+ * Product modules for /product and the footer. Keep claims factual: only list features the product ships.
  */
-import type { IconName } from "@/components/Icon";
-
 export type Module = {
   id: string;
   name: string;
-  icon: IconName;
-  /** One line used on cards. */
-  tagline: string;
-  /** Short paragraph used on /product. */
   summary: string;
   features: string[];
-  /** Show on the home page grid. */
-  featured?: boolean;
+  /** Optional screenshot from public/screens/. */
+  image?: string;
+  alt?: string;
 };
 
 export const modules: Module[] = [
   {
-    id: "multi-company",
-    name: "Multi-brand platform",
-    icon: "layers",
-    tagline: "Every brand in your group on one platform, with data kept apart.",
-    summary:
-      "Run several companies or brands from a single Northstar People account. Each company gets its own sign-in address and its data is isolated at the database level, while the parent group still gets a combined view.",
-    features: [
-      "Own sign-in subdomain for every company (company.yourdomain)",
-      "Data isolated per company with database row-level security",
-      "Group view for the parent organisation",
-      "Brand switcher for people who work across companies",
-      "Files stored per company in encrypted storage",
-    ],
-    featured: true,
-  },
-  {
-    id: "core-hr",
-    name: "Core HR",
-    icon: "users",
-    tagline: "One employee record, from offer letter to exit.",
-    summary:
-      "A clean employee master with onboarding, documents, letters and exits in one place, plus an import path that brings your history across when you switch from PeopleStrong.",
-    features: [
-      "Employee master and organisation data",
-      "Onboarding and exit workflows",
-      "Employee documents and letters",
-      "PeopleStrong switch-over import: employee master, salary, leave balances, YTD salary and TDS, past payslips",
-    ],
-    featured: true,
-  },
-  {
     id: "attendance",
-    name: "Attendance",
-    icon: "clock",
-    tagline: "Punches you can trust — on web, on mobile and on biometric devices.",
-    summary:
-      "Employees punch in from the browser or the mobile app with a selfie, inside the office geofence. Shifts, rosters and biometric devices sit in the same module, and HR decides how strict anti-buddy-punching should be.",
+    name: "Attendance & shifts",
+    summary: "Punches from the web, the mobile app and biometric machines in one record, with a selfie and location check.",
     features: [
-      "Web and mobile punch with selfie",
-      "Blink liveness check on web selfie punch",
-      "Geofenced office sites",
-      "Shifts and rosters",
-      "Biometric device integration (ADMS)",
-      "Anti-buddy-punching: one device per employee, office Wi-Fi / IP restriction — chosen by the HR head",
+      "Selfie punch, with a blink check on the web",
+      "Office and outlet geofences",
+      "Shifts, rosters and shift-swap requests",
+      "Biometric machines (ZKTeco / eSSL over ADMS)",
+      "One phone per employee and office Wi-Fi rules, if HR switches them on",
+      "Missed-punch regularisation",
     ],
-    featured: true,
+    image: "/screens/attendance.webp",
+    alt: "Attendance screen with today's punch and recent days",
   },
   {
     id: "leave",
     name: "Leave",
-    icon: "calendar",
-    tagline: "Policies, balances and approvals without spreadsheets.",
-    summary:
-      "Configure leave policies per company, keep balances accurate and let managers approve from the same inbox they use for everything else.",
-    features: ["Leave policies", "Leave balances", "Applications from web and mobile", "Manager approvals"],
-    featured: true,
+    summary: "Policies per company, balances people can see, and approvals that take seconds.",
+    features: ["Leave types and policies per company", "Live balances", "Team calendar and holiday list", "Apply and approve on mobile"],
+    image: "/screens/leave.webp",
+    alt: "Leave balances, calendar and upcoming holidays",
   },
   {
     id: "payroll",
     name: "India payroll",
-    icon: "rupee",
-    tagline: "PF, ESI, PT and TDS — calculated, filed and paid out.",
-    summary:
-      "Payroll built for Indian statutory rules: provident fund, ESI, professional tax and TDS under both regimes, with payslips, bank payout files, Tally export and year-end tax forms.",
+    summary: "Monthly payroll with Indian statutory deductions, payslips and year-end tax forms.",
     features: [
-      "Provident Fund (PF) and ESI",
-      "Professional Tax (PT)",
-      "TDS under the new and old tax regimes",
+      "PF, ESI and Professional Tax",
+      "TDS under the new and old regime",
       "Payslips for every employee",
-      "Bank payout files",
-      "Tally export",
-      "Employee tax declarations and proof submission",
-      "Form 16 / Form 24Q — now Form 130 / Form 138 under the Income-tax Act 2025",
+      "Bank payout file and Tally export",
+      "Tax declarations and proofs in the app",
+      "Form 16 / 24Q (Form 130 / 138 under the Income-tax Act 2025)",
+      "Maker-checker approval before payroll is published",
     ],
-    featured: true,
+    image: "/screens/payroll.webp",
+    alt: "Employee payroll view with payslips and tax projection",
+  },
+  {
+    id: "approvals",
+    name: "Approvals",
+    summary: "One inbox for managers: leave, expenses, travel, assets, shift swaps, letters, hiring and exits.",
+    features: ["Everything waiting on you in one list", "Overdue requests flagged", "Approve, send back or reject", "Reminders before things slip"],
+    image: "/screens/approvals.webp",
+    alt: "Manager approvals inbox",
+  },
+  {
+    id: "group",
+    name: "Multi-brand group",
+    summary: "Run several companies or brands from one account, each with its own sign-in and its own data.",
+    features: [
+      "Own sign-in address per brand (brand.yourdomain)",
+      "Group dashboard for owners",
+      "Brand switcher for people who work across brands",
+      "Modules switched on or off per brand",
+    ],
+    image: "/screens/group.webp",
+    alt: "Group dashboard with each brand side by side",
+  },
+  {
+    id: "core-hr",
+    name: "Core HR",
+    summary: "One employee record from offer letter to exit.",
+    features: [
+      "Employee master and org structure",
+      "Onboarding checklists",
+      "Documents and HR letters",
+      "Exit and full-and-final workflow",
+      "Import from PeopleStrong: employees, salaries, leave balances, YTD salary and TDS, old payslips",
+    ],
   },
   {
     id: "employee-services",
     name: "Employee services",
-    icon: "sparkle",
-    tagline: "Helpdesk, assets, expenses, learning and recognition in one app.",
-    summary:
-      "Everything employees ask HR for, in the same place they check their payslip — from raising a helpdesk ticket to claiming an expense with a photo of the receipt.",
-    features: [
-      "HR helpdesk",
-      "Asset management",
-      "Expenses with receipt capture",
-      "Travel requests",
-      "Learning (LMS)",
-      "Surveys and polls",
-      "Recognition",
-      "KPIs",
-    ],
-    featured: true,
+    summary: "The everyday things employees ask HR for, in the same app as their payslip.",
+    features: ["HR helpdesk", "Expenses with a photo of the receipt", "Travel requests", "Company assets", "Learning courses", "Surveys and polls", "Recognition", "KPIs"],
   },
   {
     id: "hiring",
     name: "Hiring",
-    icon: "briefcase",
-    tagline: "From job requisition to candidate, then straight into onboarding.",
-    summary: "Raise job requisitions, track candidates and hand new joiners over to onboarding without re-typing their details.",
-    features: ["Job requisitions", "Candidate tracking"],
+    summary: "Job requisitions and candidates, handed over to onboarding without re-typing.",
+    features: ["Job requisitions with approval", "Candidate tracking"],
   },
   {
-    id: "workflow",
-    name: "Approvals & insights",
-    icon: "inbox",
-    tagline: "One approvals inbox, live dashboards and reminders that run themselves.",
-    summary:
-      "Managers approve leave, expenses, requisitions and more from a single inbox. Dashboards stay live, reports are a click away, and automations nudge people before things slip.",
-    features: [
-      "One approvals inbox",
-      "Live dashboards",
-      "Analytics and reports",
-      "Automations and reminders",
-      "Push notifications",
-    ],
-  },
-  {
-    id: "mobile",
-    name: "Mobile app",
-    icon: "phone",
-    tagline: "iOS and Android app for every employee.",
-    summary:
-      "A native app for iOS and Android. Employees sign in to their own brand, confirm with 2-step verification and handle day-to-day HR from their phone.",
-    features: [
-      "Brand sign-in",
-      "2-step verification",
-      "Punch with selfie",
-      "Leave",
-      "Payslips",
-      "Notifications",
-    ],
+    id: "reports",
+    name: "Reports & automation",
+    summary: "Live dashboards, reports and reminders that run on their own.",
+    features: ["Dashboards and analytics", "Scheduled reminders (approvals, documents, birthdays, anniversaries)", "Push notifications"],
   },
   {
     id: "compliance",
     name: "Security & compliance",
-    icon: "shield",
-    tagline: "ISO 27001 & SOC 2 ready, with DPDP Act tools built in.",
-    summary:
-      "A Compliance Center that helps you prepare for ISO 27001 and SOC 2 audits, and practical tools for India's Digital Personal Data Protection Act 2023.",
-    features: [
-      "ISO 27001 & SOC 2 Compliance Center: controls, automated checks, evidence",
-      "Access reviews and policy acknowledgements",
-      "Auditor pack",
-      "DPDP Act 2023: employee data export, correction and erasure requests, breach register",
-    ],
+    summary: "Tools that help you meet the DPDP Act and prepare for ISO 27001 / SOC 2 audits.",
+    features: ["Compliance centre with ISO 27001 and SOC 2 controls", "Access reviews and policy acknowledgements", "Employee data download, correction and deletion requests", "Breach register"],
   },
 ];

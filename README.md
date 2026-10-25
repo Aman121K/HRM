@@ -55,17 +55,24 @@ All copy that changes over time lives in `src/content/`, so you don't need to to
 
 | File                     | What it holds                                                          |
 | ------------------------ | ---------------------------------------------------------------------- |
-| `src/content/site.ts`    | Name, tagline, public URL, **sales email**, **Sign in URL**, nav links |
-| `src/content/modules.ts` | Product modules: name, icon, tagline, summary, feature list            |
+| `src/content/site.ts`    | Name, tagline, public URL, **sales email**, optional phone, **Sign in URL**, nav links |
+| `src/content/tour.ts`    | Home page product tour tabs (text + screenshot per tab)                |
+| `src/content/modules.ts` | Product modules on /product: name, summary, features, screenshot       |
 | `src/content/clients.ts` | "Trusted by" companies (text wordmarks, optional approved logos)       |
 | `src/content/faq.ts`     | FAQ (home and pricing pages)                                           |
 | `src/content/security.ts`| Security controls, Compliance Center items, DPDP tools                 |
 | `src/content/pricing.ts` | Plan cards and "what shapes your quote" list                           |
 
-Styling is in one plain CSS file, `src/app/globals.css`. Colour tokens are at the top (`:root`), with
-a dark-mode override under `prefers-color-scheme: dark`. Fonts (Bricolage Grotesque + Inter) load
-through `next/font` and are self-hosted at build time. Illustrations are HTML/CSS/SVG in
-`src/components/Illustrations.tsx`. There are no stock images and nothing is hotlinked.
+Styling is in one plain CSS file, `src/app/globals.css`. Colour tokens at the top (`:root`) and the
+font (Manrope, self-hosted at build time through `next/font`) match the Northstar People app, so the
+website and the product look like one brand.
+
+### Screenshots
+
+`public/screens/*.webp` are real captures of the app with **demo data only** (desktop 1440×900 at 2×,
+resized to 1600 px wide; mobile 390×844). When the app changes, re-capture the same screens, hide the
+local "View as · Demo" switcher and the Next.js dev badge, and never use screenshots that show real
+employees' names, salaries or documents.
 
 ### Content rules
 

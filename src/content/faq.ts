@@ -3,35 +3,31 @@ export type Faq = { q: string; a: string };
 
 export const faqs: Faq[] = [
   {
-    q: "Can we run several companies or brands on one account?",
-    a: "Yes. That is what Northstar People is built for. Each company gets its own sign-in subdomain and its data is isolated at the database level with row-level security. The parent group gets a combined view, and people who work across brands can switch between them.",
+    q: "We have more than one brand. Can they all run on one account?",
+    a: "Yes, this is what Northstar People was built for. Each brand gets its own sign-in address and its own data. The group owner sees all brands together, and people who work for more than one brand can switch without logging out.",
   },
   {
-    q: "We are on PeopleStrong today. How do we move?",
-    a: "Northstar People has a switch-over import for PeopleStrong data: employee master, salary structures, leave balances, year-to-date salary and TDS, and past payslips. Your employees keep their history from day one.",
+    q: "We use PeopleStrong today. How hard is it to move?",
+    a: "We import your employee list, salary structures, leave balances, this year's salary and TDS so far, and old payslips. Employees keep their history, and tax for the rest of the year is calculated correctly from day one.",
   },
   {
-    q: "Which Indian statutory components does payroll cover?",
-    a: "PF, ESI, Professional Tax and TDS under both the new and old regimes. Employees submit tax declarations and proofs in the app, and year-end Form 16 / Form 24Q (Form 130 / Form 138 under the Income-tax Act 2025) are generated from payroll. You also get payslips, bank payout files and a Tally export.",
+    q: "Which statutory deductions does payroll handle?",
+    a: "PF, ESI, Professional Tax and TDS under both the new and old regime. Employees submit tax declarations and proofs in the app, and year-end Form 16 and 24Q (Form 130 and 138 under the new Income-tax Act) come out of payroll. You also get payslips, a bank payout file and a Tally export.",
   },
   {
-    q: "How do you stop buddy punching?",
-    a: "Selfie punch (with a blink liveness check on the web), geofenced office sites, and optional controls that your HR head chooses: one device per employee, and punching only from the office Wi-Fi or IP. Biometric devices that speak ADMS can be connected too.",
-  },
-  {
-    q: "Is Northstar People ISO 27001 or SOC 2 certified?",
-    a: "No — and we will not pretend otherwise. Northstar People is ISO 27001 & SOC 2 ready: it includes a Compliance Center with controls, automated checks, evidence collection, access reviews, policy acknowledgements and an auditor pack, to help you prepare for your own audits.",
-  },
-  {
-    q: "Does it help with the DPDP Act 2023?",
-    a: "Yes. Employees can export their data and raise correction or erasure requests, and HR keeps a breach register — all inside the product.",
+    q: "How do you stop one person punching in for another?",
+    a: "A selfie with every punch, a location check against your office or outlet, and two optional rules your HR head can switch on: one phone per employee, and punching only from the office Wi-Fi. Biometric machines can be connected as well.",
   },
   {
     q: "Is there a mobile app?",
-    a: "Yes, for iOS and Android. Employees sign in to their brand, confirm with 2-step verification, punch with a selfie, apply for leave, download payslips and receive notifications.",
+    a: "Yes, for Android and iPhone. Employees sign in to their own brand, punch in with a selfie, apply for leave, download payslips and get notifications.",
   },
   {
-    q: "Can we sign in with our company SSO?",
-    a: "Yes. Northstar People supports company single sign-on over OpenID Connect (OIDC), as well as email and password with 2-step verification (TOTP), which is mandatory for admins.",
+    q: "Is our employees' data safe?",
+    a: "Each company's data is kept separate, PAN and bank details are stored encrypted, admins must use 2-step login, and every change is recorded. The Security page has the details for your IT team.",
+  },
+  {
+    q: "Are you ISO 27001 or SOC 2 certified?",
+    a: "Not yet. The product has a built-in compliance centre that tracks ISO 27001 and SOC 2 controls and collects evidence, which helps you and us prepare for an audit. We will say so here when a certification is complete.",
   },
 ];

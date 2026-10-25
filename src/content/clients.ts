@@ -17,7 +17,7 @@ export type Client = {
 
 export const clients: Client[] = [
   { name: "Blue Tokai Coffee Roasters", category: "Specialty coffee" },
-  { name: "Got Tea", category: "Tea" },
-  { name: "Suchali's", category: "Bakery & café" },
-  { name: "Programmingglore", category: "Technology" },
+  { name: "Got Tea", category: "Bubble tea & chai cafés" },
+  { name: "Suchali's Artisan Bakehouse", category: "Artisan bakery" },
+  { name: "Programmingglore", category: "Software development" },
 ];

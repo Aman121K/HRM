@@ -10,16 +10,8 @@ import { Logo } from "./Logo";
 export function Header() {
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => setOpen(false), [pathname]);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -31,7 +23,7 @@ export function Header() {
   const isActive = (href: string) => pathname === href || pathname === href.replace(/\/$/, "");
 
   return (
-    <header className={`header ${scrolled ? "header--scrolled" : ""} ${open ? "header--open" : ""}`}>
+    <header className={`header${open ? " header--open" : ""}`}>
       <div className="container header__inner">
         <Link href="/" className="header__brand" aria-label={`${site.name} home`}>
           <Logo />
@@ -48,12 +40,8 @@ export function Header() {
             ))}
           </ul>
           <div className="header__actions">
-            <a href={site.signInUrl} className="btn btn--ghost">
-              Sign in
-            </a>
-            <Link href="/contact/#demo" className="btn btn--primary">
-              Book a demo
-            </Link>
+            <a href={site.signInUrl} className="header__signin">Sign in</a>
+            <Link href="/contact/" className="btn btn--primary">Book a demo</Link>
           </div>
         </nav>
 

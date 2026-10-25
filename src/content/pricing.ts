@@ -1,33 +1,35 @@
-/** Pricing page content. There are no public prices: every plan is "Talk to us". */
+/** Pricing page content. There are no public prices: every plan is quoted. */
 export type Plan = { name: string; for: string; points: string[]; highlight?: boolean };
 
 export const plans: Plan[] = [
   {
     name: "Single company",
-    for: "One legal entity or brand that wants modern HR and India payroll.",
+    for: "One company or brand that wants attendance, leave and payroll in one place.",
     points: [
-      "Core HR, attendance and leave",
+      "Attendance, leave and core HR",
       "India payroll with PF, ESI, PT and TDS",
-      "Employee services and hiring",
-      "iOS and Android app",
+      "Approvals, expenses and helpdesk",
+      "Android and iPhone app for every employee",
+      "Help moving your data across",
     ],
   },
   {
     name: "Multi-brand group",
-    for: "Groups running several companies or brands that need one platform with data kept apart.",
+    for: "Groups running several brands or companies that want one system with each brand kept separate.",
     points: [
-      "Everything in Single company",
-      "Own sign-in subdomain per company",
-      "Database-level isolation per company",
-      "Group view and brand switcher",
+      "Everything in Single company, for every brand",
+      "Separate sign-in address per brand",
+      "Group dashboard for owners",
+      "Brand switcher for shared staff",
+      "Modules switched on per brand",
     ],
     highlight: true,
   },
 ];
 
 export const pricingFactors: string[] = [
-  "How many companies or brands you run",
+  "Number of employees",
+  "Number of brands or companies",
   "Which modules you switch on",
-  "How many employees use the platform",
-  "Whether you are moving over from PeopleStrong",
+  "Whether we move your data from PeopleStrong or spreadsheets",
 ];

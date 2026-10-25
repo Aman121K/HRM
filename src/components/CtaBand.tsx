@@ -1,30 +1,18 @@
 import Link from "next/link";
-import { Icon } from "./Icon";
+import { site } from "@/content/site";
 
-export function CtaBand({
-  title = "See Northstar People with your own policies.",
-  body = "Tell us how your companies, payroll and attendance work today. We will walk you through the product using your setup.",
-}: {
-  title?: string;
-  body?: string;
-}) {
+/** Closing call to action used at the bottom of most pages. */
+export function CtaBand({ title = "See it with your own team's data", body = "A 30-minute walkthrough of attendance, leave and payroll, set up the way your company works." }: { title?: string; body?: string }) {
   return (
-    <section className="section section--tight" aria-labelledby="cta-title">
-      <div className="container">
-        <div className="cta reveal">
-          <div className="cta__stars" aria-hidden="true" />
-          <div className="cta__copy">
-            <h2 id="cta-title">{title}</h2>
-            <p>{body}</p>
-          </div>
-          <div className="cta__actions">
-            <Link href="/contact/#demo" className="btn btn--primary btn--lg">
-              Book a demo <Icon name="arrow" size={18} />
-            </Link>
-            <Link href="/pricing/" className="btn btn--on-dark btn--lg">
-              Talk to us about pricing
-            </Link>
-          </div>
+    <section className="cta">
+      <div className="container cta__inner">
+        <div>
+          <h2>{title}</h2>
+          <p>{body}</p>
+        </div>
+        <div className="cta__actions">
+          <Link href="/contact/" className="btn btn--gold btn--lg">Book a demo</Link>
+          <a href={`mailto:${site.salesEmail}`} className="cta__mail">or write to {site.salesEmail}</a>
         </div>
       </div>
     </section>

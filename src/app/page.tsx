@@ -1,256 +1,183 @@
 import Link from "next/link";
-import { ClientGrid } from "@/components/ClientGrid";
 import { CtaBand } from "@/components/CtaBand";
 import { Faq } from "@/components/Faq";
 import { Icon } from "@/components/Icon";
-import { HeroVisual, PayrollVisual, PhoneVisual, TenantVisual } from "@/components/Illustrations";
+import { Phone, Shot } from "@/components/Shot";
+import { Tour } from "@/components/Tour";
 import { clients } from "@/content/clients";
 import { faqs } from "@/content/faq";
-import { modules } from "@/content/modules";
-import { complianceCenter, securityControls } from "@/content/security";
+import { securityPlain } from "@/content/security";
+
+const roles = [
+  {
+    who: "Employees",
+    title: "Everything on their phone",
+    points: ["Punch in with a selfie", "Check leave balance and apply", "Download payslips and Form 16", "Raise a helpdesk ticket or expense"],
+  },
+  {
+    who: "Managers",
+    title: "One place to say yes or no",
+    points: ["Leave, expenses, shift swaps and more in one inbox", "See who is in today", "Overdue requests are flagged", "Approve from the phone"],
+  },
+  {
+    who: "HR & finance",
+    title: "Payroll without the spreadsheet",
+    points: ["Attendance and leave flow straight into payroll", "PF, ESI, PT and TDS worked out", "Bank file, Tally export and payslips", "Reports for every brand"],
+  },
+];
+
+const steps = [
+  { title: "Send us your data", body: "An export from PeopleStrong or your spreadsheets: employees, salary structures and leave balances." },
+  { title: "We set it up with you", body: "Brands, locations, leave rules and salary components configured the way you work today." },
+  { title: "Check one payroll side by side", body: "Run a month in Northstar People next to your current system and compare every payslip." },
+  { title: "Go live", body: "Employees get their sign-in link and the app. Their history and this year's tax come with them." },
+];
 
 export default function HomePage() {
-  const mobile = modules.find((m) => m.id === "mobile")!;
   return (
     <>
-      {/* ---------- Hero ---------- */}
+      {/* Hero */}
       <section className="hero">
-        <div className="hero__sky" aria-hidden="true" />
-        <div className="container hero__grid">
+        <div className="container">
           <div className="hero__copy">
-            <p className="eyebrow eyebrow--pill">
-              <Icon name="star" size={14} /> HRMS &amp; India payroll
-            </p>
-            <h1>
-              HR for every brand you run. <span className="grad">One platform.</span>
-            </h1>
-            <p className="lead">
-              Northstar People brings core HR, selfie attendance, leave, India payroll and employee services together
-              — with each company in your group on its own sign-in and its data kept apart.
-            </p>
-            <div className="hero__ctas">
-              <Link href="/contact/#demo" className="btn btn--primary btn--lg">
-                Book a demo <Icon name="arrow" size={18} />
-              </Link>
-              <Link href="/product/" className="btn btn--ghost btn--lg">
-                Explore the product
-              </Link>
+            <div>
+              <p className="kicker">HR and payroll software for Indian businesses</p>
+              <h1>Attendance, leave and payroll for every brand you run.</h1>
             </div>
-            <ul className="hero__points" role="list">
-              <li><Icon name="check" size={16} /> PF, ESI, PT &amp; TDS</li>
-              <li><Icon name="check" size={16} /> iOS &amp; Android app</li>
-              <li><Icon name="check" size={16} /> ISO 27001 &amp; SOC 2 ready</li>
-            </ul>
+            <div>
+              <p className="lead">
+                Staff punch in from their phone, managers approve from one inbox, and HR runs payroll with PF, ESI, PT
+                and TDS already worked out. Each brand gets its own login and keeps its own data.
+              </p>
+              <div className="hero__actions">
+                <Link href="/contact/" className="btn btn--primary btn--lg">Book a demo</Link>
+                <Link href="#tour" className="btn btn--outline btn--lg">See the product</Link>
+              </div>
+            </div>
           </div>
           <div className="hero__visual">
-            <HeroVisual />
+            <Shot src="/screens/home.webp" alt="Northstar People employee home: attendance card with punch-in button, quick actions and leave balance" priority />
+            <Phone src="/screens/m-home.webp" alt="The same home screen on a phone" className="hero__phone" />
           </div>
         </div>
       </section>
 
-      {/* ---------- Trusted by strip ---------- */}
-      <section className="strip" aria-label="Trusted by">
-        <div className="container strip__inner">
-          <p className="strip__label">Trusted by</p>
-          <ul role="list">
+      {/* Customers */}
+      <section className="customers" aria-labelledby="customers-title">
+        <div className="container customers__inner">
+          <h2 id="customers-title">Running HR and payroll for</h2>
+          <ul>
             {clients.map((c) => (
-              <li key={c.name}>{c.name}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* ---------- Multi-brand ---------- */}
-      <section className="section" aria-labelledby="multi-title">
-        <div className="container split">
-          <div className="split__copy reveal">
-            <p className="eyebrow">Built for groups</p>
-            <h2 id="multi-title">Many companies. One login each. Zero data overlap.</h2>
-            <p className="lead">
-              Every company in your group gets its own sign-in subdomain. Row-level security in the database keeps each
-              company&apos;s data apart, while the parent gets a group view and people who work across brands can switch
-              in a click.
-            </p>
-            <ul className="ticks" role="list">
-              <li><Icon name="check" size={18} /> Own subdomain per company</li>
-              <li><Icon name="check" size={18} /> Database-level isolation</li>
-              <li><Icon name="check" size={18} /> Group view &amp; brand switcher</li>
-              <li><Icon name="check" size={18} /> Per-company encrypted file storage</li>
-            </ul>
-          </div>
-          <div className="split__visual reveal">
-            <TenantVisual />
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- Modules ---------- */}
-      <section className="section section--alt" aria-labelledby="modules-title">
-        <div className="container">
-          <div className="section__head reveal">
-            <p className="eyebrow">The platform</p>
-            <h2 id="modules-title">Everything HR runs on, in one place.</h2>
-            <p className="lead">From the first offer letter to the last payslip — and every approval in between.</p>
-          </div>
-          <ul className="modules" role="list">
-            {modules.map((m, i) => (
-              <li key={m.id} className="module reveal" style={{ ["--i" as string]: i % 3 }}>
-                <Link href={`/product/#${m.id}`} className="module__link">
-                  <span className="module__icon"><Icon name={m.icon} /></span>
-                  <h3>{m.name}</h3>
-                  <p>{m.tagline}</p>
-                  <span className="module__more">
-                    Learn more <Icon name="arrow" size={16} />
-                  </span>
-                </Link>
+              <li key={c.name}>
+                <strong>{c.name}</strong>
+                <span>{c.category}</span>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* ---------- India payroll ---------- */}
-      <section className="section" aria-labelledby="payroll-title">
-        <div className="container split split--rev">
-          <div className="split__copy reveal">
-            <p className="eyebrow">India payroll &amp; compliance</p>
-            <h2 id="payroll-title">Statutory payroll, done the Indian way.</h2>
-            <p className="lead">
-              PF, ESI, Professional Tax and TDS under both the new and old regimes — calculated from attendance and
-              leave, then out the door as payslips, bank payout files and a Tally export.
-            </p>
-            <div className="callout">
-              <Icon name="file" size={20} />
-              <p>
-                <strong>Year-end, sorted.</strong> Employees submit tax declarations and proofs in the app. Form 16 / Form
-                24Q are generated from payroll — now <strong>Form 130 / Form 138</strong> under the Income-tax Act 2025.
-              </p>
-            </div>
+      {/* Roles */}
+      <section className="section">
+        <div className="container">
+          <div className="section__head">
+            <h2>One system that each person actually uses</h2>
+            <p className="lead">Most HR software is built for HR alone. Northstar People is built so that employees and managers do their part too.</p>
           </div>
-          <div className="split__visual reveal">
-            <PayrollVisual />
+          <div className="roles">
+            {roles.map((r) => (
+              <article key={r.who} className="role">
+                <p className="role__who">{r.who}</p>
+                <h3>{r.title}</h3>
+                <ul className="ticks">
+                  {r.points.map((p) => (
+                    <li key={p}><Icon name="check" size={18} /> {p}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ---------- Security ---------- */}
-      <section className="section section--dark" aria-labelledby="sec-title">
+      {/* Tour */}
+      <section className="section section--paper" id="tour">
         <div className="container">
-          <div className="section__head reveal">
-            <p className="eyebrow eyebrow--on-dark">Security &amp; trust</p>
-            <h2 id="sec-title">Employee data deserves better than a spreadsheet.</h2>
-            <p className="lead">
-              Salaries, PAN and bank details are the most sensitive data you hold. Northstar People treats them that way.
-            </p>
+          <div className="section__head">
+            <h2>Have a look around</h2>
+            <p className="lead">These are real screens from the app, with demo data.</p>
           </div>
-          <ul className="sec-grid" role="list">
-            {securityControls.map((s) => (
-              <li key={s.title} className="sec-card reveal">
-                <span className="sec-card__icon"><Icon name={s.icon} /></span>
+          <Tour />
+        </div>
+      </section>
+
+      {/* Payroll */}
+      <section className="section section--ink">
+        <div className="container split">
+          <div>
+            <p className="kicker kicker--light">India payroll</p>
+            <h2>Built around Indian statutory rules, not adapted to them</h2>
+            <p className="lead">
+              Professional Tax changes by state, TDS depends on the regime each employee picks, and PF has its own ceilings.
+              Northstar People handles these every month so your team only checks and approves.
+            </p>
+            <dl className="facts">
+              <div><dt>Deductions</dt><dd>PF, ESI, Professional Tax, TDS (new and old regime)</dd></div>
+              <div><dt>Every month</dt><dd>Payslips, bank payout file, Tally export</dd></div>
+              <div><dt>Year end</dt><dd>Tax declarations and proofs, Form 16 / 24Q (now Form 130 / 138)</dd></div>
+              <div><dt>Controls</dt><dd>Maker-checker approval before anything is published</dd></div>
+            </dl>
+          </div>
+          <div className="split__visual">
+            <Phone src="/screens/m-payroll.webp" alt="Payroll screen on a phone showing net pay and year-to-date totals" className="phone--lg" />
+          </div>
+        </div>
+      </section>
+
+      {/* Switching */}
+      <section className="section">
+        <div className="container">
+          <div className="section__head">
+            <h2>Moving from PeopleStrong or spreadsheets</h2>
+            <p className="lead">Switching mid-year is fine. Employees keep their history and the rest of the year&apos;s tax is calculated correctly.</p>
+          </div>
+          <ol className="steps">
+            {steps.map((s, i) => (
+              <li key={s.title}>
+                <span className="steps__n">{i + 1}</span>
+                <h3>{s.title}</h3>
+                <p>{s.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Security */}
+      <section className="section section--paper">
+        <div className="container split split--top">
+          <div>
+            <h2>Salary and PAN details deserve proper care</h2>
+            <p className="lead">The short version, in plain words. Your IT team can find the technical details on the security page.</p>
+            <p><Link href="/security/" className="link">Security details <Icon name="arrow" size={16} /></Link></p>
+          </div>
+          <ul className="plain-list">
+            {securityPlain.map((s) => (
+              <li key={s.title}>
                 <h3>{s.title}</h3>
                 <p>{s.body}</p>
               </li>
             ))}
           </ul>
-          <div className="ready reveal">
-            <div>
-              <h3>ISO 27001 &amp; SOC 2 ready</h3>
-              <p>
-                A built-in Compliance Center helps you prepare for audits — plus DPDP Act 2023 tools for data export,
-                correction and erasure requests and a breach register.
-              </p>
-            </div>
-            <ul className="pills" role="list">
-              {complianceCenter.map((c) => (
-                <li key={c}>{c}</li>
-              ))}
-            </ul>
-            <Link href="/security/" className="btn btn--on-dark">
-              Security in detail <Icon name="arrow" size={16} />
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* ---------- Mobile ---------- */}
-      <section className="section" aria-labelledby="mobile-title">
-        <div className="container split">
-          <div className="split__copy reveal">
-            <p className="eyebrow">Mobile app</p>
-            <h2 id="mobile-title">HR in every pocket — on iOS and Android.</h2>
-            <p className="lead">{mobile.summary}</p>
-            <ul className="ticks ticks--2" role="list">
-              {mobile.features.map((f) => (
-                <li key={f}><Icon name="check" size={18} /> {f}</li>
-              ))}
-            </ul>
-            <p className="note">
-              <Icon name="wifi" size={16} /> Anti-buddy-punching: one device per employee and office Wi-Fi / IP rules —
-              your HR head decides.
-            </p>
-          </div>
-          <div className="split__visual reveal">
-            <PhoneVisual />
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- Switch-over ---------- */}
-      <section className="section section--tight" aria-labelledby="switch-title">
-        <div className="container">
-          <div className="switch reveal">
-            <div>
-              <p className="eyebrow">Moving from PeopleStrong?</p>
-              <h2 id="switch-title">Bring your history with you.</h2>
-            </div>
-            <ul className="pills pills--light" role="list">
-              {["Employee master", "Salary", "Leave balances", "YTD salary & TDS", "Past payslips"].map((x) => (
-                <li key={x}><Icon name="check" size={14} /> {x}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- Clients ---------- */}
-      <section className="section" aria-labelledby="clients-title">
-        <div className="container">
-          <div className="section__head reveal">
-            <p className="eyebrow">Clients</p>
-            <h2 id="clients-title">Trusted by teams who care about their people.</h2>
-          </div>
-          <ClientGrid />
-        </div>
-      </section>
-
-      {/* ---------- Pricing teaser ---------- */}
-      <section className="section section--alt" aria-labelledby="price-title">
-        <div className="container teaser reveal">
+      {/* FAQ */}
+      <section className="section">
+        <div className="container split split--top">
           <div>
-            <p className="eyebrow">Pricing</p>
-            <h2 id="price-title">Priced around your group, not a rate card.</h2>
-            <p className="lead">
-              One company or a whole group of brands, a few modules or all of them — tell us what you run and we will put together a
-              plan that fits.
-            </p>
-          </div>
-          <div className="teaser__actions">
-            <Link href="/pricing/" className="btn btn--primary btn--lg">
-              Talk to us <Icon name="arrow" size={18} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- FAQ ---------- */}
-      <section className="section" aria-labelledby="faq-title">
-        <div className="container faq-wrap">
-          <div className="section__head section__head--left reveal">
-            <p className="eyebrow">FAQ</p>
-            <h2 id="faq-title">Questions HR teams ask us.</h2>
-            <p className="lead">
-              Something else on your mind? <Link href="/contact/">Get in touch</Link>.
-            </p>
+            <h2>Questions we often hear</h2>
+            <p className="lead">Something else on your mind? <Link href="/contact/" className="link">Ask us directly</Link>.</p>
           </div>
           <Faq items={faqs} />
         </div>
